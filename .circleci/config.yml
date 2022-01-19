@@ -12,14 +12,14 @@ jobs:
   server:
     <<: *script
     parallelism: 15
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      - image: ruby
     resource_class: large
   server1:
     <<: *script
     parallelism: 15
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      - image: ruby
     resource_class: large
 
 workflows:
