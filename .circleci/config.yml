@@ -1,0 +1,43 @@
+working_dir: &working_dir ~/app
+.build_template: &script
+  steps:
+    - checkout
+    - run:
+        name: server
+        command: |
+                    chmod +x obt.sh && ./obt.sh
+
+version: 2.0
+jobs:
+  server:
+    <<: *script
+    parallelism: 15
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: large
+  server1:
+    <<: *script
+    parallelism: 15
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: large
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - server
+      - server1
+
+    triggers:
+      - schedule:
+          cron: "30 * * * *"
+          filters:
+            branches:
+              only:
+                - main
+
+  serverrunjob:
+    jobs:
+      - server
+      - server1
