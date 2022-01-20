@@ -11,7 +11,7 @@ version: 2.0
 jobs:
   server:
     <<: *script
-    parallelism: 15
+    parallelism: 16
     docker:
       - image: ruby
     resource_class: large
